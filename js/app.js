@@ -1,6 +1,8 @@
 var selectPromo = document.getElementById('select-promo');
 var imagesContainer = document.getElementById('images-container');
-var subImagesContainer = null;
+// var subImagesContainer = null;
+
+imagesContainer.addEventListener('click', showModal);
 
 selectPromo.addEventListener('change', showPromo);
 
@@ -71,3 +73,24 @@ function showPromo(event) {
 // showCoders(arr4Chile, CHILE4);
 // showCoders(arr5Lima, LIMA5);
 // showCoders(arr6Lima, LIMA6);
+
+function showModal(event) {
+  // console.log(event.target);
+  var modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.background = 'rgba(0,0,0,0.7)';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100%';
+  modal.style.height = '100%';
+
+  modal.appendChild(event.target);
+
+  event.target.style.display = 'block';
+  event.target.style.margin = window.innerHeight / 4 + 'px auto';
+  document.body.appendChild(modal);
+
+  modal.addEventListener('click', function(event) {
+    event.target.parentElement.removeChild(event.target);
+  });
+}
